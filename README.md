@@ -18,7 +18,7 @@ Track your habits, maintain streaks, visualize progress, and unlock daily motiva
 
 ## 🚀 Live Demo
 
-👉 [Open Advanced Habit Tracker (Pro)](https://yourusername.github.io/toolboxhub-pro-tools/)
+👉 [Open Advanced Habit Tracker (Pro)](https://github.com/SUJIT-G/habit-tracker-pro/)
 (*Replace with your actual GitHub Pages link*)
 
 ---
@@ -55,3 +55,4 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 Created by **Sujit Chowdhury**
 © 2025 ToolBox Hub. All rights reserved.
+
