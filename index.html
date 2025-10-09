@@ -7,259 +7,279 @@
 <meta name="description" content="Advanced Habit Tracker — unlimited habits, streaks, reminders, exports. ToolBox Hub PRO." />
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
-  :root{
-    --bg: #0f172a;
-    --card:#0b1220;
-    --accent-start:#ff7a7a;
-    --accent-end:#7b9cff;
-    --muted:#9aa4b2;
-    --glass: rgba(255,255,255,0.04);
-    --success: #10b981;
-    --danger:#ff6b6b;
-    --radius:12px;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
+  :root{
+    --bg: #0f172a;
+    --card:#0b1220;
+    --accent-start:#ff7a7a;
+    --accent-end:#7b9cff;
+    --muted:#9aa4b2;
+    --glass: rgba(255,255,255,0.04);
+    --success: #10b981;
+    --danger:#ff6b6b;
+    --radius:12px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
 
-  html,body{height:100%}
-  body{
-    margin:0;
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #9be7ff 100%);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    color:#0b1220;
-    padding:18px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-  }
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #9be7ff 100%);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    color:#0b1220;
+    padding:18px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+  }
 
-  .container{
-    width:100%;
-    max-width:1100px;
-  }
+  .container{
+    width:100%;
+    max-width:1100px;
+  }
 
-  header{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    margin-bottom:14px;
-  }
+  header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:14px;
+  }
 
-  .brand {
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
+  .brand {
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
 
-  .logo {
-    width:56px;height:56px;border-radius:12px;
-    background:linear-gradient(135deg,var(--accent-start),var(--accent-end));
-    display:flex;align-items:center;justify-content:center;
-    color:white;font-weight:700;font-size:18px;
-    box-shadow:0 6px 18px rgba(11,18,32,0.08);
-  }
+  .logo {
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent-start),var(--accent-end));
+    display:flex;align-items:center;justify-content:center;
+    color:white;font-weight:700;font-size:18px;
+    box-shadow:0 6px 18px rgba(11,18,32,0.08);
+  }
 
-  .title {
-    font-size:18px;font-weight:700;
-  }
+  .title {
+    font-size:18px;font-weight:700;
+  }
 
-  .subtitle { font-size:13px;color:var(--muted) }
+  .subtitle { font-size:13px;color:var(--muted) }
 
-  .nav {
-    margin-left:auto; display:flex; gap:10px; align-items:center;
-  }
+  .nav {
+    margin-left:auto; display:flex; gap:10px; align-items:center;
+  }
 
-  .btn {
-    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
-    background:rgba(255,255,255,0.95);border:1px solid rgba(11,18,32,0.06);cursor:pointer;font-weight:600;
-    box-shadow:0 4px 18px rgba(11,18,32,0.06);
-  }
+  .btn {
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+    background:rgba(255,255,255,0.95);border:1px solid rgba(11,18,32,0.06);cursor:pointer;font-weight:600;
+    box-shadow:0 4px 18px rgba(11,18,32,0.06);
+    text-decoration: none; /* Add for <a> tags */
+    color: inherit; /* Add for <a> tags */
+  }
 
-  .pro-badge {
-    background: linear-gradient(90deg,var(--accent-start),var(--accent-end));
-    color:white;padding:6px 10px;border-radius:10px;font-weight:700;
-  }
+  .pro-badge {
+    background: linear-gradient(90deg,var(--accent-start),var(--accent-end));
+    color:white;padding:6px 10px;border-radius:10px;font-weight:700;
+  }
 
-  main {
-    display:grid;
-    grid-template-columns: 1fr 420px;
-    gap:18px;
-  }
+  main {
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:18px;
+  }
 
-  /* mobile first */
-  @media (max-width:900px){
-    main{grid-template-columns: 1fr; padding-bottom:48px}
-    .sidebar { order: -1; }
-  }
+  /* mobile first */
+  @media (max-width:900px){
+    main{grid-template-columns: 1fr; padding-bottom:48px}
+    .sidebar { order: -1; }
+  }
 
-  /* Left panel (tracker) */
-  .card {
-    background: rgba(255,255,255,0.85);
-    border-radius: var(--radius);
-    padding:16px; box-shadow: 0 8px 30px rgba(11,18,32,0.06);
-  }
+  /* Left panel (tracker) */
+  .card {
+    background: rgba(255,255,255,0.85);
+    border-radius: var(--radius);
+    padding:16px; box-shadow: 0 8px 30px rgba(11,18,32,0.06);
+  }
 
-  .controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; align-items:center; }
-  .input { flex:1; min-width:150px;padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06); }
-  .small { padding:8px 10px;font-size:14px; }
+  .controls { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; align-items:center; }
+  .input { flex:1; min-width:150px;padding:10px;border-radius:8px;border:1px solid rgba(11,18,32,0.06); }
+  .small { padding:8px 10px;font-size:14px; }
 
-  .habit-list { display:grid; gap:10px; margin-top:10px; }
-  .habit {
-    display:flex; align-items:center; gap:10px; padding:12px; border-radius:10px;
-    background:var(--glass); border:1px solid rgba(11,18,32,0.03);
-  }
+  .habit-list { display:grid; gap:10px; margin-top:10px; }
+  .habit {
+    display:flex; align-items:center; gap:10px; padding:12px; border-radius:10px;
+    background:var(--glass); border:1px solid rgba(11,18,32,0.03);
+  }
 
-  .habit .meta { flex:1; min-width:0 }
-  .habit h4 { margin:0; font-size:16px; font-weight:700; color:#07122a; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .habit p { margin:6px 0 0; font-size:13px; color:var(--muted); }
+  .habit .meta { flex:1; min-width:0 }
+  .habit h4 { margin:0; font-size:16px; font-weight:700; color:#07122a; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .habit p { margin:6px 0 0; font-size:13px; color:var(--muted); }
 
-  .habit .actions { display:flex; gap:8px; align-items:center; }
-  .icon-btn { border:none; background:transparent; padding:8px;border-radius:8px; cursor:pointer; }
-  .check-btn { background:linear-gradient(90deg,var(--accent-start),var(--accent-end)); color:white; padding:8px 12px; border-radius:8px; font-weight:700; border:none; cursor:pointer; }
+  .habit .actions { display:flex; gap:8px; align-items:center; }
+  .icon-btn { border:none; background:transparent; padding:8px;border-radius:8px; cursor:pointer; }
+  .check-btn { background:linear-gradient(90deg,var(--accent-start),var(--accent-end)); color:white; padding:8px 12px; border-radius:8px; font-weight:700; border:none; cursor:pointer; }
 
-  /* Right sidebar */
-  .sidebar .card { position:sticky; top:18px; }
-  .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:12px; }
-  .stat { background:linear-gradient(90deg,#ffffff,#ffffff); padding:12px;border-radius:10px;text-align:center; }
-  .stat h3 { margin:0; font-size:18px }
-  .stat p { margin:0; color:var(--muted); font-size:13px; }
+  /* Right sidebar */
+  .sidebar .card { position:sticky; top:18px; }
+  .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:12px; }
+  .stat { background:linear-gradient(90deg,#ffffff,#ffffff); padding:12px;border-radius:10px;text-align:center; }
+  .stat h3 { margin:0; font-size:18px }
+  .stat p { margin:0; color:var(--muted); font-size:13px; }
 
-  canvas { width:100% !important; height:160px !important; border-radius:8px; background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45)); }
+  canvas { width:100% !important; height:160px !important; border-radius:8px; background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45)); }
 
-  .footer-note { font-size:13px; color:var(--muted); margin-top:12px; }
+  .footer-note { font-size:13px; color:var(--muted); margin-top:12px; }
 
-  /* Locked overlay */
-  .locked {
-    display:flex; gap:12px; align-items:center; justify-content:center; flex-direction:column;
-    padding:36px; text-align:center;
-  }
-  .locked p { margin:0 0 12px;font-size:16px;color:#07122a;}
-  .stripe-btn { background:linear-gradient(90deg,var(--accent-start),var(--accent-end)); color:white; padding:12px 16px;border-radius:12px;border:none;font-weight:700; cursor:pointer; }
+  /* Locked overlay */
+  .locked {
+    display:flex; gap:12px; align-items:center; justify-content:center; flex-direction:column;
+    padding:36px; text-align:center;
+  }
+  .locked p { margin:0 0 12px;font-size:16px;color:#07122a;}
+  /* Updated Stripe Button Style to be an <a> tag */
+  .stripe-btn { 
+    background:linear-gradient(90deg,var(--accent-start),var(--accent-end)); 
+    color:white; 
+    padding:12px 16px;
+    border-radius:12px;
+    border:none;
+    font-weight:700; 
+    cursor:pointer;
+    text-decoration: none; /* Important for <a> tag */
+    display: inline-block;
+  }
 
-  /* tiny */
-  .muted { color:var(--muted); font-size:13px; }
-  .small-txt { font-size:12px;color:var(--muted); }
+  /* tiny */
+  .muted { color:var(--muted); font-size:13px; }
+  .small-txt { font-size:12px;color:var(--muted); }
 
-  /* responsive tweaks */
-  @media (max-width:600px){
-    .logo{width:48px;height:48px}
-    .title{font-size:16px}
-    .input{padding:10px}
-  }
+  /* responsive tweaks */
+  @media (max-width:600px){
+    .logo{width:48px;height:48px}
+    .title{font-size:16px}
+    .input{padding:10px}
+  }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">TB</div>
-        <div>
-          <div class="title">ToolBox Hub <span class="pro-badge">PRO</span></div>
-          <div class="subtitle">Advanced Habit Tracker</div>
-        </div>
-      </div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">TB</div>
+        <div>
+          <div class="title">ToolBox Hub <span class="pro-badge">PRO</span></div>
+          <div class="subtitle">Advanced Habit Tracker</div>
+        </div>
+      </div>
 
-      <nav class="nav">
-        <a class="btn" href="https://omnitoolaz.com" target="_blank">Back to ToolBox Hub</a>
-        <button id="unlock-sample" class="btn" title="Set pro unlocked locally (dev)">Unlock Pro</button>
-      </nav>
-    </header>
+      <nav class="nav">
+        <a class="btn" href="https://omnitoolaz.com" target="_blank">Back to ToolBox Hub</a>
+                <a id="customer-portal-link" class="btn" href="https://billing.stripe.com/p/login/dRm14p9vl1vD5U72dYbsc00" target="_blank">Manage Subscription</a>
+        <button id="unlock-sample" class="btn" title="Set pro unlocked locally (dev)">Unlock (dev)</button>
+      </nav>
+    </header>
 
-    <main>
-      <!-- Left: main tracker -->
-      <section class="card" id="app">
-        <!-- Gate: hidden or shown by JS -->
-        <div id="locked-screen" class="locked" style="display:none;">
-          <h2>Advanced Habit Tracker — PRO</h2>
-          <p>Unlock unlimited habits, smart reminders, streak analytics and export features.</p>
-          <button id="go-pay" class="stripe-btn">Subscribe ₹299/month — Secure with Stripe</button>
-          <p class="small-txt">After payment you will be redirected here for full access. Your purchase unlocks all pro tools.</p>
-        </div>
+    <main>
+            <section class="card" id="app">
+                <div id="locked-screen" class="locked" style="display:none;">
+          <h2>Advanced Habit Tracker — PRO</h2>
+          <p>Unlock unlimited habits, smart reminders, streak analytics and export features.</p>
+                    <a id="go-pay" 
+             class="stripe-btn" 
+             href="https://buy.stripe.com/payment-id-heredRm1" 
+             target="_blank" 
+             rel="noopener noreferrer">
+            Subscribe ₹299/month — Secure with Stripe
+          </a>
+          <p class="small-txt">After payment you will be redirected here for full access. Your purchase unlocks all pro tools.</p>
+        </div>
 
-        <div id="tracker-ui" style="display:none;">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;">
-            <div>
-              <h2 style="margin:0 0 6px 0">My Habits</h2>
-              <div class="muted">Track daily consistency. Your progress is saved locally.</div>
-            </div>
-            <div class="small-txt">Pro features: reminders, exports, charts</div>
-          </div>
+        <div id="tracker-ui" style="display:none;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;">
+            <div>
+              <h2 style="margin:0 0 6px 0">My Habits</h2>
+              <div class="muted">Track daily consistency. Your progress is saved locally.</div>
+            </div>
+            <div class="small-txt">Pro features: reminders, exports, charts</div>
+          </div>
 
-          <div class="controls">
-            <input id="habit-name" class="input" placeholder="Add a new habit (e.g., Read 20 pages)" />
-            <select id="habit-frequency" class="small">
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-            </select>
-            <button id="add-habit" class="btn">Add Habit</button>
-          </div>
+          <div class="controls">
+            <input id="habit-name" class="input" placeholder="Add a new habit (e.g., Read 20 pages)" />
+            <select id="habit-frequency" class="small">
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+            </select>
+            <button id="add-habit" class="btn">Add Habit</button>
+          </div>
 
-          <div class="controls">
-            <input id="search" class="input" placeholder="Search habits..." />
-            <button id="export-btn" class="btn small">Export CSV</button>
-            <label class="btn small" style="cursor:pointer;"><input id="import-file" type="file" accept=".csv" style="display:none">Import</label>
-          </div>
+          <div class="controls">
+            <input id="search" class="input" placeholder="Search habits..." />
+            <button id="export-btn" class="btn small">Export CSV</button>
+            <label class="btn small" style="cursor:pointer;"><input id="import-file" type="file" accept=".csv" style="display:none">Import</label>
+          </div>
 
-          <div id="habit-list" class="habit-list"></div>
+          <div id="habit-list" class="habit-list"></div>
 
-          <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
-            <button id="clear-all" class="btn small">Clear All (dev)</button>
-            <button id="request-notif" class="btn small">Enable Reminders</button>
-            <button id="mark-today" class="btn small">Mark Today's Date</button>
-          </div>
+          <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+            <button id="clear-all" class="btn small">Clear All (dev)</button>
+            <button id="request-notif" class="btn small">Enable Reminders</button>
+            <button id="mark-today" class="btn small">Mark Today's Date</button>
+          </div>
 
-          <div class="footer-note">Tip: After successful Stripe payment, you can either redirect to this page with <code>?pro=1</code> or set <code>localStorage.pro_unlocked = "1"</code> from your server verification.</div>
-        </div>
-      </section>
+          <div class="footer-note">Tip: After successful Stripe payment, you can either redirect to this page with <code>?pro=1</code> or set <code>localStorage.pro_unlocked = "1"</code> from your server verification.</div>
+        </div>
+      </section>
 
-      <!-- Right: sidebar -->
-      <aside class="sidebar">
-        <div class="card">
-          <h3 style="margin-top:0">Progress Overview</h3>
-          <div class="stats" style="margin-top:10px">
-            <div class="stat">
-              <h3 id="total-habits">0</h3>
-              <p class="muted">Total Habits</p>
-            </div>
-            <div class="stat">
-              <h3 id="today-completed">0</h3>
-              <p class="muted">Completed Today</p>
-            </div>
-            <div class="stat">
-              <h3 id="avg-complete">0%</h3>
-              <p class="muted">30-day Avg</p>
-            </div>
-            <div class="stat">
-              <h3 id="longest-streak">0</h3>
-              <p class="muted">Longest Streak</p>
-            </div>
-          </div>
+            <aside class="sidebar">
+        <div class="card">
+          <h3 style="margin-top:0">Progress Overview</h3>
+          <div class="stats" style="margin-top:10px">
+            <div class="stat">
+              <h3 id="total-habits">0</h3>
+              <p class="muted">Total Habits</p>
+            </div>
+            <div class="stat">
+              <h3 id="today-completed">0</h3>
+              <p class="muted">Completed Today</p>
+            </div>
+            <div class="stat">
+              <h3 id="avg-complete">0%</h3>
+              <p class="muted">30-day Avg</p>
+            </div>
+            <div class="stat">
+              <h3 id="longest-streak">0</h3>
+              <p class="muted">Longest Streak</p>
+            </div>
+          </div>
 
-          <h4 style="margin:8px 0 6px 0">Last 30 Days</h4>
-          <canvas id="chart"></canvas>
+          <h4 style="margin:8px 0 6px 0">Last 30 Days</h4>
+          <canvas id="chart"></canvas>
 
-          <div style="margin-top:12px; display:flex; gap:8px;">
-            <button id="import-sample" class="btn small">Load Sample Data</button>
-            <button id="reset-stats" class="btn small">Reset Stats</button>
-          </div>
+          <div style="margin-top:12px; display:flex; gap:8px;">
+            <button id="import-sample" class="btn small">Load Sample Data</button>
+            <button id="reset-stats" class="btn small">Reset Stats</button>
+          </div>
 
-          <p class="muted" style="margin-top:12px">Local only: this demo stores data in your browser storage. For production, sync server-side or protect the page behind authenticated access after Stripe verification.</p>
-        </div>
-      </aside>
-    </main>
-  </div>
+          <p class="muted" style="margin-top:12px">Local only: this demo stores data in your browser storage. For production, sync server-side or protect the page behind authenticated access after Stripe verification.</p>
+        </div>
+      </aside>
+    </main>
+  </div>
 
 <script>
 /*
-  Advanced Habit Tracker (Pro)
-  - Stores habits in localStorage under key "tb_habits"
-  - Each habit:
-    { id, name, freq, createdAt, completed: { 'YYYY-MM-DD': true }, longestStreak }
-  - Unlocking: if URL contains ?pro=1 OR localStorage.pro_unlocked === "1", the app UI shows.
-  - Replace STRIPE_LINK with your Stripe Payment Link in goPay().
+  Advanced Habit Tracker (Pro)
+  - Stores habits in localStorage under key "tb_habits"
+  - Unlocking: if URL contains ?pro=1 OR localStorage.pro_unlocked === "1", the app UI shows.
+  - REPLACE the two placeholder links below with your actual Stripe links.
 */
 
-const STRIPE_LINK = "https://buy.stripe.com/price_1SFdK4SGo1U9vZbSaWIcT7dw"; // <-- REPLACE with your Stripe Payment Link
+// ⚠️ REPLACE THIS with your actual Stripe Payment Link (for new subscriptions)
+const STRIPE_PAYMENT_LINK = "YOUR_STRIPE_PAYMENT_LINK"; 
+
+// ⚠️ REPLACE THIS with your Stripe Customer Portal Login Link (for existing customers to manage billing)
+const STRIPE_PORTAL_LINK = "https://billing.stripe.com/p/login/dRm14p9vl1vD5U72dYbsc00"; 
+
 
 // Utils
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
@@ -269,365 +289,370 @@ const daysBetween = (a,b) => Math.round((b-a)/(24*3600*1000));
 
 // storage helpers
 function saveData(data){
-  localStorage.setItem('tb_habits', JSON.stringify(data));
+  localStorage.setItem('tb_habits', JSON.stringify(data));
 }
 function loadData(){
-  return JSON.parse(localStorage.getItem('tb_habits') || '[]');
+  return JSON.parse(localStorage.getItem('tb_habits') || '[]');
 }
 
 // Chart data (simple)
 function drawChart(percentageArray){
-  const canvas = document.getElementById('chart');
-  if(!canvas.getContext) return;
-  const ctx = canvas.getContext('2d');
-  canvas.width = canvas.clientWidth * devicePixelRatio;
-  canvas.height = canvas.clientHeight * devicePixelRatio;
-  ctx.scale(devicePixelRatio, devicePixelRatio);
-  const w = canvas.clientWidth, h = canvas.clientHeight;
-  ctx.clearRect(0,0,w,h);
+  const canvas = document.getElementById('chart');
+  if(!canvas.getContext) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.clientWidth * devicePixelRatio;
+  canvas.height = canvas.clientHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  ctx.clearRect(0,0,w,h);
 
-  // background gradient
-  const g = ctx.createLinearGradient(0,0,w,0);
-  g.addColorStop(0, '#ff9a9e');
-  g.addColorStop(1, '#7b9cff');
-  ctx.fillStyle = g;
-  const barWidth = Math.max(4, (w - 12) / percentageArray.length - 2);
-  percentageArray.forEach((p,i) => {
-    const x = 6 + i*(barWidth+2);
-    const barH = (p/100) * (h - 20);
-    ctx.fillRect(x, h - 10 - barH, barWidth, barH);
-  });
+  // background gradient
+  const g = ctx.createLinearGradient(0,0,w,0);
+  g.addColorStop(0, '#ff9a9e');
+  g.addColorStop(1, '#7b9cff');
+  ctx.fillStyle = g;
+  const barWidth = Math.max(4, (w - 12) / percentageArray.length - 2);
+  percentageArray.forEach((p,i) => {
+    const x = 6 + i*(barWidth+2);
+    const barH = (p/100) * (h - 20);
+    ctx.fillRect(x, h - 10 - barH, barWidth, barH);
+  });
 
-  // axis labels
-  ctx.fillStyle = 'rgba(11,18,32,0.6)';
-  ctx.font = '12px system-ui';
-  ctx.fillText('0%', 6, h - 2);
-  ctx.fillText('100%', w - 36, 12);
+  // axis labels
+  ctx.fillStyle = 'rgba(11,18,32,0.6)';
+  ctx.font = '12px system-ui';
+  ctx.fillText('0%', 6, h - 2);
+  ctx.fillText('100%', w - 36, 12);
 }
 
 // Core app
 document.addEventListener('DOMContentLoaded', () => {
-  const lockedScreen = document.getElementById('locked-screen');
-  const trackerUI = document.getElementById('tracker-ui');
-  const goPayBtn = document.getElementById('go-pay');
-  const unlockDev = document.getElementById('unlock-sample');
+  const lockedScreen = document.getElementById('locked-screen');
+  const trackerUI = document.getElementById('tracker-ui');
+  // Removed goPayBtn click listener, since it's an <a> tag now
+  const unlockDev = document.getElementById('unlock-sample');
+  const customerPortalLink = document.getElementById('customer-portal-link');
 
-  function isPro() {
-    const q = new URLSearchParams(window.location.search);
-    if (q.get('pro') === '1') {
-      try { localStorage.setItem('pro_unlocked', '1'); } catch(e){}
-      return true;
-    }
-    return localStorage.getItem('pro_unlocked') === '1';
-  }
+  // Set the link dynamically (though it's already set in HTML, this is safer)
+  customerPortalLink.href = STRIPE_PORTAL_LINK;
+  
+  // Also set the payment link dynamically
+  document.getElementById('go-pay').href = STRIPE_PAYMENT_LINK;
 
-  function showGate(){
-    if(isPro()){
-      lockedScreen.style.display = 'none';
-      trackerUI.style.display = 'block';
-      renderAll();
-    } else {
-      lockedScreen.style.display = 'flex';
-      trackerUI.style.display = 'none';
-    }
-  }
 
-  // stripe redirect
-  goPayBtn.addEventListener('click', () => {
-    // User buys on Stripe, set the Payment Link to redirect back to this page with ?pro=1
-    // Replace STRIPE_LINK var above with your Payment Link created in Stripe Dashboard.
-    window.location.href = price_1SFdK4SGo1U9vZbSaWIcT7dw;
-  });
+  function isPro() {
+    const q = new URLSearchParams(window.location.search);
+    if (q.get('pro') === '1') {
+      // If redirected with ?pro=1, save to local storage for future visits
+      try { localStorage.setItem('pro_unlocked', '1'); } catch(e){}
+      return true;
+    }
+    return localStorage.getItem('pro_unlocked') === '1';
+  }
 
-  // dev unlock (for testing, sets local storage)
-  unlockDev.addEventListener('click', () => {
-    localStorage.setItem('pro_unlocked', '1');
-    alert('Pro unlocked locally for testing. Reloading...');
-    showGate();
-  });
+  function showGate(){
+    if(isPro()){
+      lockedScreen.style.display = 'none';
+      trackerUI.style.display = 'block';
+      // Show the "Manage Subscription" link only if Pro is unlocked
+      customerPortalLink.style.display = 'inline-flex';
+      renderAll();
+    } else {
+      lockedScreen.style.display = 'flex';
+      trackerUI.style.display = 'none';
+      // Hide the "Manage Subscription" link until Pro is unlocked
+      customerPortalLink.style.display = 'none';
+    }
+  }
 
-  showGate();
+  // dev unlock (for testing, sets local storage)
+  unlockDev.addEventListener('click', () => {
+    localStorage.setItem('pro_unlocked', '1');
+    alert('Pro unlocked locally for testing. Reloading...');
+    // Re-check access and render UI
+    showGate();
+  });
 
-  // UI elements
-  const habitListEl = document.getElementById('habit-list');
-  const nameInput = document.getElementById('habit-name');
-  const freqInput = document.getElementById('habit-frequency');
-  const addBtn = document.getElementById('add-habit');
-  const searchInput = document.getElementById('search');
-  const exportBtn = document.getElementById('export-btn');
-  const importFile = document.getElementById('import-file');
-  const totalHabitsEl = document.getElementById('total-habits');
-  const todayCompletedEl = document.getElementById('today-completed');
-  const avgCompleteEl = document.getElementById('avg-complete');
-  const longestStreakEl = document.getElementById('longest-streak');
-  const importSample = document.getElementById('import-sample');
-  const clearAllBtn = document.getElementById('clear-all');
-  const resetStatsBtn = document.getElementById('reset-stats');
-  const requestNotif = document.getElementById('request-notif');
-  const markTodayBtn = document.getElementById('mark-today');
+  showGate();
 
-  function getHabits(){
-    return loadData();
-  }
+  // UI elements
+  const habitListEl = document.getElementById('habit-list');
+  const nameInput = document.getElementById('habit-name');
+  const freqInput = document.getElementById('habit-frequency');
+  const addBtn = document.getElementById('add-habit');
+  const searchInput = document.getElementById('search');
+  const exportBtn = document.getElementById('export-btn');
+  const importFile = document.getElementById('import-file');
+  const totalHabitsEl = document.getElementById('total-habits');
+  const todayCompletedEl = document.getElementById('today-completed');
+  const avgCompleteEl = document.getElementById('avg-complete');
+  const longestStreakEl = document.getElementById('longest-streak');
+  const importSample = document.getElementById('import-sample');
+  const clearAllBtn = document.getElementById('clear-all');
+  const resetStatsBtn = document.getElementById('reset-stats');
+  const requestNotif = document.getElementById('request-notif');
+  const markTodayBtn = document.getElementById('mark-today');
 
-  function setHabits(data){
-    saveData(data);
-    renderAll();
-  }
+  function getHabits(){
+    return loadData();
+  }
 
-  function addHabit(name, freq){
-    const data = getHabits();
-    const note = { id: uid(), name: name.trim(), freq: freq || 'daily', createdAt: new Date().toISOString(), completed: {}, longestStreak: 0 };
-    data.unshift(note);
-    setHabits(data);
-  }
+  function setHabits(data){
+    saveData(data);
+    renderAll();
+  }
 
-  function editHabit(id, updates){
-    const data = getHabits().map(h => h.id === id ? {...h, ...updates} : h);
-    setHabits(data);
-  }
+  function addHabit(name, freq){
+    const data = getHabits();
+    const note = { id: uid(), name: name.trim(), freq: freq || 'daily', createdAt: new Date().toISOString(), completed: {}, longestStreak: 0 };
+    data.unshift(note);
+    setHabits(data);
+  }
 
-  function removeHabit(id){
-    const data = getHabits().filter(h => h.id !== id);
-    setHabits(data);
-  }
+  function editHabit(id, updates){
+    const data = getHabits().map(h => h.id === id ? {...h, ...updates} : h);
+    setHabits(data);
+  }
 
-  function toggleComplete(id, dateISO){
-    const data = getHabits().map(h => {
-      if(h.id !== id) return h;
-      const completed = {...h.completed};
-      if(completed[dateISO]) delete completed[dateISO];
-      else completed[dateISO] = true;
-      return {...h, completed};
-    });
-    setHabits(data);
-  }
+  function removeHabit(id){
+    const data = getHabits().filter(h => h.id !== id);
+    setHabits(data);
+  }
 
-  // Stats utilities
-  function calcLongestStreak(completedDates){
-    // completedDates: keys of dates where completed true
-    const days = Object.keys(completedDates).sort();
-    if(!days.length) return 0;
-    let longest = 0, current = 1;
-    for(let i=1;i<days.length;i++){
-      const prev = parseDate(days[i-1]);
-      const curr = parseDate(days[i]);
-      if(daysBetween(prev, curr) === 1) current++; else { longest = Math.max(longest, current); current = 1; }
-    }
-    longest = Math.max(longest, current);
-    return longest;
-  }
+  function toggleComplete(id, dateISO){
+    const data = getHabits().map(h => {
+      if(h.id !== id) return h;
+      const completed = {...h.completed};
+      if(completed[dateISO]) delete completed[dateISO];
+      else completed[dateISO] = true;
+      return {...h, completed};
+    });
+    setHabits(data);
+  }
 
-  function compute30DayCompletionPercent(){
-    const data = getHabits();
-    const last30 = [];
-    for(let i=29;i>=0;i--){
-      const d = new Date(); d.setDate(d.getDate() - i);
-      const iso = todayISO(d);
-      last30.push(iso);
-    }
-    const result = last30.map(date => {
-      let count = 0;
-      data.forEach(h => { if(h.completed && h.completed[date]) count++; });
-      return data.length ? Math.round((count/data.length) * 100) : 0;
-    });
-    return result;
-  }
+  // Stats utilities
+  function calcLongestStreak(completedDates){
+    // completedDates: keys of dates where completed true
+    const days = Object.keys(completedDates).sort();
+    if(!days.length) return 0;
+    let longest = 0, current = 1;
+    for(let i=1;i<days.length;i++){
+      const prev = parseDate(days[i-1]);
+      const curr = parseDate(days[i]);
+      if(daysBetween(prev, curr) === 1) current++; else { longest = Math.max(longest, current); current = 1; }
+    }
+    longest = Math.max(longest, current);
+    return longest;
+  }
 
-  function renderAll(){
-    const data = getHabits();
-    const filter = searchInput.value.trim().toLowerCase();
-    habitListEl.innerHTML = '';
-    const today = todayISO();
-    let todayCompleted = 0;
-    let longest = 0;
-    data.forEach(h => {
-      if(filter && !h.name.toLowerCase().includes(filter)) return;
-      const doneToday = !!(h.completed && h.completed[today]);
-      if(doneToday) todayCompleted++;
-      longest = Math.max(longest, calcLongestStreak(h.completed || {}));
+  function compute30DayCompletionPercent(){
+    const data = getHabits();
+    const last30 = [];
+    for(let i=29;i>=0;i--){
+      const d = new Date(); d.setDate(d.getDate() - i);
+      const iso = todayISO(d);
+      last30.push(iso);
+    }
+    const result = last30.map(date => {
+      let count = 0;
+      data.forEach(h => { if(h.completed && h.completed[date]) count++; });
+      return data.length ? Math.round((count/data.length) * 100) : 0;
+    });
+    return result;
+  }
 
-      const div = document.createElement('div');
-      div.className = 'habit';
+  function renderAll(){
+    const data = getHabits();
+    const filter = searchInput.value.trim().toLowerCase();
+    habitListEl.innerHTML = '';
+    const today = todayISO();
+    let todayCompleted = 0;
+    let longest = 0;
+    data.forEach(h => {
+      if(filter && !h.name.toLowerCase().includes(filter)) return;
+      const doneToday = !!(h.completed && h.completed[today]);
+      if(doneToday) todayCompleted++;
+      longest = Math.max(longest, calcLongestStreak(h.completed || {}));
 
-      const meta = document.createElement('div');
-      meta.className = 'meta';
-      const h4 = document.createElement('h4'); h4.textContent = h.name;
-      const p = document.createElement('p'); p.textContent = `Frequency: ${h.freq} • Created: ${new Date(h.createdAt).toLocaleDateString()}`;
+      const div = document.createElement('div');
+      div.className = 'habit';
 
-      meta.appendChild(h4); meta.appendChild(p);
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      const h4 = document.createElement('h4'); h4.textContent = h.name;
+      const p = document.createElement('p'); p.textContent = `Frequency: ${h.freq} • Created: ${new Date(h.createdAt).toLocaleDateString()}`;
 
-      const actions = document.createElement('div'); actions.className = 'actions';
+      meta.appendChild(h4); meta.appendChild(p);
 
-      const chk = document.createElement('button');
-      chk.className = 'check-btn';
-      chk.textContent = doneToday ? 'Completed' : 'Mark Complete';
-      chk.addEventListener('click', () => toggleComplete(h.id, todayISO()));
+      const actions = document.createElement('div'); actions.className = 'actions';
 
-      const edit = document.createElement('button');
-      edit.className = 'icon-btn';
-      edit.innerHTML = '✏️';
-      edit.title = 'Edit';
-      edit.addEventListener('click', () => {
-        const newName = prompt('Edit habit name', h.name);
-        if(newName && newName.trim()) editHabit(h.id, { name: newName.trim() });
-      });
+      const chk = document.createElement('button');
+      chk.className = 'check-btn';
+      chk.textContent = doneToday ? 'Completed' : 'Mark Complete';
+      chk.addEventListener('click', () => toggleComplete(h.id, todayISO()));
 
-      const del = document.createElement('button');
-      del.className = 'icon-btn';
-      del.innerHTML = '🗑️';
-      del.title = 'Delete';
-      del.addEventListener('click', () => {
-        if(confirm('Delete this habit?')) removeHabit(h.id);
-      });
+      const edit = document.createElement('button');
+      edit.className = 'icon-btn';
+      edit.innerHTML = '✏️';
+      edit.title = 'Edit';
+      edit.addEventListener('click', () => {
+        const newName = prompt('Edit habit name', h.name);
+        if(newName && newName.trim()) editHabit(h.id, { name: newName.trim() });
+      });
 
-      actions.appendChild(chk); actions.appendChild(edit); actions.appendChild(del);
+      const del = document.createElement('button');
+      del.className = 'icon-btn';
+      del.innerHTML = '🗑️';
+      del.title = 'Delete';
+      del.addEventListener('click', () => {
+        if(confirm('Delete this habit?')) removeHabit(h.id);
+      });
 
-      div.appendChild(meta); div.appendChild(actions);
-      habitListEl.appendChild(div);
-    });
+      actions.appendChild(chk); actions.appendChild(edit); actions.appendChild(del);
 
-    totalHabitsEl.textContent = data.length;
-    todayCompletedEl.textContent = todayCompleted;
-    longestStreakEl.textContent = longest;
+      div.appendChild(meta); div.appendChild(actions);
+      habitListEl.appendChild(div);
+    });
 
-    // 30-day average
-    const arr = compute30DayCompletionPercent();
-    const avg = arr.reduce((a,b)=>a+b,0) / (arr.length || 1);
-    avgCompleteEl.textContent = Math.round(avg) + '%';
-    drawChart(arr);
-  }
+    totalHabitsEl.textContent = data.length;
+    todayCompletedEl.textContent = todayCompleted;
+    longestStreakEl.textContent = longest;
 
-  // Add / Search / Export / Import
-  addBtn.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if(!name) return alert('Enter a habit name');
-    addHabit(name, freqInput.value);
-    nameInput.value = '';
-  });
+    // 30-day average
+    const arr = compute30DayCompletionPercent();
+    const avg = arr.reduce((a,b)=>a+b,0) / (arr.length || 1);
+    avgCompleteEl.textContent = Math.round(avg) + '%';
+    drawChart(arr);
+  }
 
-  nameInput.addEventListener('keydown', e => { if(e.key === 'Enter') addBtn.click(); });
+  // Add / Search / Export / Import
+  addBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    if(!name) return alert('Enter a habit name');
+    addHabit(name, freqInput.value);
+    nameInput.value = '';
+  });
 
-  searchInput.addEventListener('input', () => renderAll());
+  nameInput.addEventListener('keydown', e => { if(e.key === 'Enter') addBtn.click(); });
 
-  exportBtn.addEventListener('click', () => {
-    const data = getHabits();
-    if(!data.length) return alert('No habits to export');
-    // CSV: id,name,freq,createdAt,completedDates(sep|),longest
-    const rows = [['id','name','freq','createdAt','completed','longestStreak']];
-    data.forEach(h => {
-      const completed = Object.keys(h.completed || {}).join('|');
-      rows.push([h.id, JSON.stringify(h.name), h.freq, h.createdAt, completed, h.longestStreak || 0]);
-    });
-    const csv = rows.map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], {type:'text/csv'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'tb_habits_export.csv'; a.click();
-    URL.revokeObjectURL(url);
-  });
+  searchInput.addEventListener('input', () => renderAll());
 
-  importFile.addEventListener('change', (ev) => {
-    const f = ev.target.files[0];
-    if(!f) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const txt = reader.result;
-      // naive CSV parse
-      const lines = txt.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-      const out = [];
-      for(let i=1;i<lines.length;i++){
-        const cols = lines[i].split(',');
-        const id = cols[0] || uid();
-        const name = cols[1] ? JSON.parse(cols[1]) : ('Imported ' + id);
-        const freq = cols[2] || 'daily';
-        const createdAt = cols[3] || new Date().toISOString();
-        const completed = {};
-        if(cols[4]) cols[4].split('|').forEach(d => { if(d) completed[d] = true; });
-        const longest = parseInt(cols[5]||'0',10);
-        out.push({ id, name, freq, createdAt, completed, longestStreak: longest });
-      }
-      setHabits(out);
-      alert('Import complete');
-      importFile.value = '';
-    };
-    reader.readAsText(f);
-  });
+  exportBtn.addEventListener('click', () => {
+    const data = getHabits();
+    if(!data.length) return alert('No habits to export');
+    // CSV: id,name,freq,createdAt,completedDates(sep|),longest
+    const rows = [['id','name','freq','createdAt','completed','longestStreak']];
+    data.forEach(h => {
+      const completed = Object.keys(h.completed || {}).join('|');
+      rows.push([h.id, JSON.stringify(h.name), h.freq, h.createdAt, completed, h.longestStreak || 0]);
+    });
+    const csv = rows.map(r => r.join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'tb_habits_export.csv'; a.click();
+    URL.revokeObjectURL(url);
+  });
 
-  importSample.addEventListener('click', () => {
-    const sample = [
-      { id: uid(), name: 'Read 20 pages', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
-      { id: uid(), name: 'Morning Walk 20 min', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
-      { id: uid(), name: 'Log Expenses', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
-    ];
-    // mark some previous completion to make chart interesting
-    const d = new Date();
-    for(let i=0;i<10;i++){
-      const iso = todayISO(new Date(d.getFullYear(), d.getMonth(), d.getDate() - i));
-      sample.forEach((h, idx) => {
-        if(Math.random() > 0.4) h.completed[iso] = true;
-      });
-    }
-    setHabits(sample);
-  });
+  importFile.addEventListener('change', (ev) => {
+    const f = ev.target.files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const txt = reader.result;
+      // naive CSV parse
+      const lines = txt.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      const out = [];
+      for(let i=1;i<lines.length;i++){
+        const cols = lines[i].split(',');
+        const id = cols[0] || uid();
+        const name = cols[1] ? JSON.parse(cols[1]) : ('Imported ' + id);
+        const freq = cols[2] || 'daily';
+        const createdAt = cols[3] || new Date().toISOString();
+        const completed = {};
+        if(cols[4]) cols[4].split('|').forEach(d => { if(d) completed[d] = true; });
+        const longest = parseInt(cols[5]||'0',10);
+        out.push({ id, name, freq, createdAt, completed, longestStreak: longest });
+      }
+      setHabits(out);
+      alert('Import complete');
+      importFile.value = '';
+    };
+    reader.readAsText(f);
+  });
 
-  clearAllBtn.addEventListener('click', () => {
-    if(confirm('Clear all local data?')) { localStorage.removeItem('tb_habits'); renderAll(); }
-  });
+  importSample.addEventListener('click', () => {
+    const sample = [
+      { id: uid(), name: 'Read 20 pages', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
+      { id: uid(), name: 'Morning Walk 20 min', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
+      { id: uid(), name: 'Log Expenses', freq:'daily', createdAt:new Date().toISOString(), completed:{}, longestStreak:0 },
+    ];
+    // mark some previous completion to make chart interesting
+    const d = new Date();
+    for(let i=0;i<10;i++){
+      const iso = todayISO(new Date(d.getFullYear(), d.getMonth(), d.getDate() - i));
+      sample.forEach((h, idx) => {
+        if(Math.random() > 0.4) h.completed[iso] = true;
+      });
+    }
+    setHabits(sample);
+  });
 
-  resetStatsBtn.addEventListener('click', () => {
-    const data = getHabits().map(h => ({ ...h, completed: {}, longestStreak: 0 }));
-    setHabits(data);
-  });
+  clearAllBtn.addEventListener('click', () => {
+    if(confirm('Clear all local data?')) { localStorage.removeItem('tb_habits'); renderAll(); }
+  });
 
-  requestNotif.addEventListener('click', async () => {
-    if(!('Notification' in window)) return alert('Browser notifications not supported');
-    if(Notification.permission === 'granted') return alert('Notifications already enabled');
-    const res = await Notification.requestPermission();
-    if(res === 'granted') alert('Notifications enabled. You will get reminders if scheduled.');
-  });
+  resetStatsBtn.addEventListener('click', () => {
+    const data = getHabits().map(h => ({ ...h, completed: {}, longestStreak: 0 }));
+    setHabits(data);
+  });
 
-  markTodayBtn.addEventListener('click', () => {
-    // Mark all habits today (dev convenience)
-    const data = getHabits().map(h => ({ ...h, completed: { ...(h.completed||{}), [todayISO()]: true } }));
-    setHabits(data);
-  });
+  requestNotif.addEventListener('click', async () => {
+    if(!('Notification' in window)) return alert('Browser notifications not supported');
+    if(Notification.permission === 'granted') return alert('Notifications already enabled');
+    const res = await Notification.requestPermission();
+    if(res === 'granted') alert('Notifications enabled. You will get reminders if scheduled.');
+  });
 
-  // Basic notification scheduler (simple demo)
-  // For production, use Service Worker and server push for reliable reminders
-  function scheduleDailyReminder(habit){
-    if(!('Notification' in window)) return;
-    if(Notification.permission !== 'granted') return;
-    const title = 'Habit Reminder';
-    const body = `Don't forget: ${habit.name}`;
-    // Show immediately for demo
-    new Notification(title, { body });
-  }
+  markTodayBtn.addEventListener('click', () => {
+    // Mark all habits today (dev convenience)
+    const data = getHabits().map(h => ({ ...h, completed: { ...(h.completed||{}), [todayISO()]: true } }));
+    setHabits(data);
+  });
 
-  // On load, compute some derived properties for each habit
-  function recalcDerived(){
-    const data = getHabits().map(h => {
-      const longest = calcLongestStreak(h.completed || {});
-      return { ...h, longestStreak: longest };
-    });
-    setHabits(data);
-  }
+  // Basic notification scheduler (simple demo)
+  // For production, use Service Worker and server push for reliable reminders
+  function scheduleDailyReminder(habit){
+    if(!('Notification' in window)) return;
+    if(Notification.permission !== 'granted') return;
+    const title = 'Habit Reminder';
+    const body = `Don't forget: ${habit.name}`;
+    // Show immediately for demo
+    new Notification(title, { body });
+  }
 
-  // initial render
-  renderAll();
+  // On load, compute some derived properties for each habit
+  function recalcDerived(){
+    const data = getHabits().map(h => {
+      const longest = calcLongestStreak(h.completed || {});
+      return { ...h, longestStreak: longest };
+    });
+    setHabits(data);
+  }
 
-  // small autosave on visibilitychange
-  document.addEventListener('visibilitychange', () => {
-    if(document.visibilityState === 'hidden') saveData(getHabits());
-  });
+  // initial render
+  renderAll();
 
-  // periodic recalc & rerender (useful to update stats)
-  setInterval(() => {
-    recalcDerived();
-    renderAll();
-  }, 5000);
+  // small autosave on visibilitychange
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'hidden') saveData(getHabits());
+  });
+
+  // periodic recalc & rerender (useful to update stats)
+  setInterval(() => {
+    recalcDerived();
+    renderAll();
+  }, 5000);
 });
 </script>
 </body>
 </html>
-
-
