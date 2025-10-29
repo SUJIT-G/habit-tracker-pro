@@ -19,7 +19,7 @@ Track your habits, maintain streaks, visualize progress, and unlock daily motiva
 ## 🚀 Live Demo
 
 👉 [Open Advanced Habit Tracker (Pro)](https://sujit-g.github.io/habit-tracker-pro/)
-(*Replace with your actual GitHub Pages link*)
+
 
 ---
 
@@ -41,7 +41,7 @@ Visit [ToolBox Hub](https://www.omnitoolaz.com) for details.
 * HTML5
 * CSS3 (Responsive Grid + Flexbox)
 * Vanilla JavaScript
-* Stripe Payment Integration
+  
 
 ---
 
@@ -55,5 +55,6 @@ This project is licensed under the [MIT License](LICENSE.md).
 
 Created by **Sujit Chowdhury**
 © 2025 ToolBox Hub. All rights reserved.
+
 
 
